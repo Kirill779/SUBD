@@ -1,11 +1,11 @@
 create table if not exists Genre (
 id serial primary key,
-musical_genre VARCHAR(80) not null UNIQUE 
+musical_genre VARCHAR(80) UNIQUE not null 
 );
 
 create table if not exists Artist (
 id serial primary key,
-musical_artist VARCHAR(40) not null
+musical_artist VARCHAR(40) UNIQUE not null
 );
 
 create table if not exists ArtistGenre (
@@ -37,7 +37,7 @@ Duration integer not null
 create table if not exists Collection_of_Song (
 id serial primary key,
 Title VARCHAR(40),
-year_of_release integer not null 
+year_of_release integer UNIQUE not null 
 );
 
 create table if not exists Track_collection (
