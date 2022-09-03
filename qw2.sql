@@ -16,9 +16,8 @@ constraint ga primary key (musical_genre,musical_artist)
 
 create table if not exists Album (
 id serial primary key,
-musical_artist VARCHAR(40) not null,
 name_album VARCHAR(80) not null,
-year_of_release integer not null
+year_of_release integer not null check (year_of_release > 1950)
 );
 
 create table if not exists Albumartist (
@@ -31,13 +30,13 @@ create table if not exists Track (
 id serial primary key,
 name_track VARCHAR(80),
 Album_id integer not null references Album(id),
-Duration integer not null 
+Duration integer not null check (Duration > 30)
 );
 
 create table if not exists Collection_of_Song (
 id serial primary key,
 Title VARCHAR(40),
-year_of_release integer UNIQUE not null 
+year_of_release integer not null check (year_of_release > 1950)
 );
 
 create table if not exists Track_collection (
