@@ -1,50 +1,3 @@
-create table if not exists Genre (
-id serial primary key,
-musical_genre VARCHAR(80) UNIQUE not null 
-);
-
-create table if not exists Artist (
-id serial primary key,
-musical_artist VARCHAR(40) UNIQUE not null
-);
-
-create table if not exists ArtistGenre (
-musical_genre integer references Genre(id),
-musical_artist integer references Artist(id),
-constraint ga primary key (musical_genre,musical_artist)
-);
-
-create table if not exists Album (
-id serial primary key,
-name_album VARCHAR(80) not null,
-year_of_release integer not null
-);
-
-create table if not exists Albumartist (
-Title_album integer references Album(id),
-name_artist integer references Artist(id),
-constraint am primary key (Title_album,name_artist)
-);
-
-create table if not exists Track (
-id serial primary key,
-name_track VARCHAR(80),
-Album_id integer not null references Album(id),
-Duration integer not null 
-);
-
-create table if not exists Collection_of_Song (
-id serial primary key,
-Title VARCHAR(40),
-year_of_release integer UNIQUE not null 
-);
-
-create table if not exists Track_collection (
-collection integer references Collection_of_Song(id),
-track integer references Track(id),
-constraint tc primary key (collection,track)
-);
-
 -- добавляем новый жанр
 insert into genre (id,musical_genre)
 values (1,'Попса');
@@ -170,7 +123,9 @@ values (12,'Николай',224,3 );
 insert into track(id,name_track,duration,album_id)
 values (13,'Мальчик на Баду',172,10);
 insert into track(id,name_track,duration,album_id)
-values (14,'Желаю',155,9 )
+values (14,'Желаю',155,9 );
+insert into track(id,name_track,duration,album_id)
+values (15,'Веселая песня',187,7);
 
 
 -- добавляем сборники
@@ -186,7 +141,7 @@ insert into collection_of_song (id,title,year_of_release)
 values (5,'Хиты России 2018',2018);
 insert into collection_of_song (id,title,year_of_release)
 values (6,'Лучшие хиты 2018',2018);
-insert into collection_of_song (id,title,year_of_releask)
+insert into collection_of_song (id,title,year_of_release)
 values (7,'Русские песни 2018',2018);
 insert into collection_of_song (id,title,year_of_release)
 values (8,'Новогодние песни',2020);
@@ -210,11 +165,3 @@ insert into track_collection (collection,track)
 values (7,11);
 insert into track_collection (collection,track)
 values (8,13)
-
-
-
-delete from genre 
-where id < 80
-
-
-
