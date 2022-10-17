@@ -51,7 +51,7 @@ values (1,7);
 insert into artistgenre(musical_genre,musical_artist)
 values (4,8);
 insert into artistgenre (musical_genre,musical_artist)
-values (5,9)
+values (5,9);
 insert into artistgenre (musical_genre,musical_artist)
 values (6,10)
 
@@ -89,7 +89,9 @@ values (6,5);
 insert into albumartist  (name_artist,title_album)
 values (6,6);
 insert into albumartist  (name_artist,title_album)
-values (9,7);
+values (7,7);
+insert into albumartist  (name_artist,title_album)
+values (9,9);
 insert into albumartist  (name_artist,title_album)
 values (10,10)
 
@@ -134,13 +136,13 @@ values (1,'Плейлист лучших песен 2014',2014);
 insert into collection_of_song (id,title,year_of_release)
 values (2,'Сборник летних хитов',2016);
 insert into collection_of_song (id,title,year_of_release)
-values (3,'Песня года',1991);
+values (3,'Песня года c Киркоровым',1991);
 insert into collection_of_song (id,title,year_of_release)
 values (4,'Стопудовые хиты',2018);
 insert into collection_of_song (id,title,year_of_release)
-values (5,'Хиты России 2018',2018);
+values (5,'Хиты Филиппа Киркорова 2018',2018);
 insert into collection_of_song (id,title,year_of_release)
-values (6,'Лучшие хиты 2018',2018);
+values (6,'Лучшие хиты Киркорова 2018',2018);
 insert into collection_of_song (id,title,year_of_release)
 values (7,'Русские песни 2018',2018);
 insert into collection_of_song (id,title,year_of_release)
@@ -165,3 +167,6 @@ insert into track_collection (collection,track)
 values (7,11);
 insert into track_collection (collection,track)
 values (8,13)
+
+
+del id < 20 from collection_of_song 
