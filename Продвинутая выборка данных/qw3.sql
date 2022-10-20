@@ -48,6 +48,10 @@ insert into artistgenre(musical_genre,musical_artist)
 values (1,6);
 insert into artistgenre (musical_genre,musical_artist)
 values (1,7);
+insert into artistgenre (musical_genre,musical_artist)
+values (3,8);
+insert into artistgenre (musical_genre,musical_artist)
+values (3,8);
 insert into artistgenre(musical_genre,musical_artist)
 values (4,8);
 insert into artistgenre (musical_genre,musical_artist)
@@ -167,7 +171,3 @@ insert into track_collection (collection,track)
 values (7,11);
 insert into track_collection (collection,track)
 values (8,13)
-
-
-delete from artistgenre
-where musical_genre  < 20; 
