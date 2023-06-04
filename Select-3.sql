@@ -13,11 +13,14 @@ select album_id,name_album, count(*), avg(duration) from track t
 left join album a on a.id = t.album_id
 group by album_id, name_album
 order by avg(duration)
---все исполнители, которые не выпустили альбомы в 2020 году
-select musical_artist , year_of_release from albumartist a
-left join artist art on art.id = a.name_artist
-full join album alb on alb.id = a.title_album
-where not year_of_release = 2020
+select distinct musical_artist from artist art
+	where musical_artist not in (
+		select distinct art.musical_artist from artist art
+		left join albumartist aa on art.id = aa.name_artist
+		left join album alb on alb.id = aa.title_album
+		where alb.year_of_release = 2020
+		)
+	order by art.musical_artist;
 --названия сборников, в которых присутствует конкретный исполнитель
 select musical_artist,cos1.title from collection_of_song cos1 
 join track_collection tc on tc.collection = cos1.id
@@ -39,13 +42,13 @@ full join track_collection tc on t.id = tc.track
 group by name_track, collection 
 having  collection is null ;
 --Исполнителя(-ей), написавшего самый короткий по продолжительности трек (теоретически таких треков может быть несколько) 
-select  musical_artist, min(duration)  from track t  
+select musical_artist, duration  from track t  
 join album alb on t.album_id = alb.id 
 join albumartist aa on aa.title_album  = alb.id 
 join  artist a on a.id = aa.name_artist  
 where duration = (select min(duration) from track t)
-group by musical_artist;
--Название альбомов, содержащих наименьшее количество треков 
-select  name_album, name_track from (select t.album_id, count(t.album_id) name_track from track t group by t.album_id) t
-join album a on a.id = t.album_id 
-group by name_album, name_track 
+--Название альбомов, содержащих наименьшее количество треков 
+select  name_album, track_num from (select t.album_id, count(t.album_id) track_num from track t group by t.album_id) t
+join album alb on alb.id = t.album_id 
+group by alb.name_album, t.track_num
+having track_num = (select min(mycount) from (select album_id, count(album_id) mycount from track group by album_id) as mintrack);
